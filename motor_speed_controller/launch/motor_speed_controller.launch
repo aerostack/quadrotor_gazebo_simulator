@@ -1,0 +1,18 @@
+<launch>
+  <arg name="mav_name"                        default="hummingbird" />
+  <arg name="namespace"                       default="drone111"/>
+  <arg name="self_localization_pose_topic"    default="ground_truth/pose"/>
+  <arg name="self_localization_speed_topic"   default="ground_truth/speed"/>
+  <arg name="motor_speed_topic"               default="actuator_command/motor_speed"/>
+  <arg name="roll_pitch_yawrate_thrust_topic" default="actuator_command/roll_pitch_yaw_rate_thrust"/>
+
+  <group ns="$(arg namespace)">
+    <node name="motor_speed_controller" pkg="motor_speed_controller" type="mav_pid_attitude_controller_node" respawn="true" clear_params="true" output="screen">
+      <param name="~self_localization_pose_topic"       value="$(arg self_localization_pose_topic)"      type="str" />
+      <param name="~self_localization_speed_topic"      value="$(arg self_localization_speed_topic)"     type="str" />
+      <param name="~motor_speed_topic"                  value="$(arg motor_speed_topic)"                 type="str" />
+      <param name="~roll_pitch_yawrate_thrust_topic"    value="$(arg roll_pitch_yawrate_thrust_topic)"   type="str" />
+      <rosparam file="$(find motor_speed_controller)/resources/PID_attitude_$(arg mav_name).yaml" />
+    </node>
+  </group>
+</launch>

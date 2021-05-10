@@ -1,0 +1,16 @@
+<launch>
+  <arg name="world_name" default="basic"/>
+  <arg name="enable_logging" default="false"/>
+  <arg name="enable_ground_truth" default="true"/>
+  <arg name="drone_swarm_number" default="1"/>
+  <arg name="mav_name" default="hummingbird" />
+
+
+  <group ns="$(arg mav_name)$(arg drone_swarm_number)">
+	<node name="waypoint_publisher_file" pkg="rotors_gazebo" type="waypoint_publisher_file" output="screen" args="$(find rotors_gazebo)/resource/example_waypoints.txt"/>
+    
+  </group>
+
+
+
+</launch>

@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <model name="obstacle_cylinder">
+    <gravity>0</gravity>
+    <static>0</static>
+    <link name="sensors_link">
+        <collision name="cylinder_collision">
+          <geometry>
+		  <cylinder>
+		    <radius>0.05</radius>
+		    <length>0.1</length>
+		  </cylinder>
+          </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.99</mu>
+            <mu2>0.99</mu2>
+          </ode>
+        </friction>
+      </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+		  <cylinder>
+		    <radius>0.05</radius>
+		    <length>0.1</length>
+		  </cylinder>
+          </geometry>
+        <material>
+          <script>
+            <name>Gazebo/blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <ambient>0.3 0.3 0.3 1</ambient>
+          <diffuse>0.2 0.7 0.7 1</diffuse>
+          <specular>0.01 0.01 0.01 1</specular>
+          <emissive>0.2 0.7 0 1</emissive>
+          <shader type='vertex'>
+            <normal_map>__default__</normal_map>
+          </shader>
+        </material>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0.0</transparency>
+        </visual>
+    </link>
+      <plugin name="model_push" filename="libgazebo_moving_obstacle.so">
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+  </model>
+</sdf>

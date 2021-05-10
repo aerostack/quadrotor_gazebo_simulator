@@ -1,0 +1,182 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <model name="wall_adr">
+    <static>1</static>
+    <link name="link0">
+			<pose frame=''>5.85 2.1 2 0 -0 0</pose>
+        <collision name="box_collision">
+          <geometry>
+            <box>
+              <size>15 1 4</size>
+            </box>
+          </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.99</mu>
+            <mu2>0.99</mu2>
+          </ode>
+        </friction>
+      </surface>
+        </collision>
+
+   	<visual name="visual">
+          <geometry>
+            <box>
+              <size>15 1 4</size>
+            </box>
+          </geometry>
+        <material>
+          <script>
+            <uri>model://wall_adr/materials/scripts</uri>
+            <uri>model://wall_adr/materials/textures</uri>
+            <name>leftside</name>
+          </script>
+        </material>
+        <pose frame=''>0 0 0. 0 -0 0</pose>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0.0</transparency>
+        </visual>
+      <sensor name="contact_sensor_1" type="contact">
+	<plugin name="my_contact_plugin" filename="libgazebo_ros_bumper.so"/>
+          <contact>
+            <collision>box_collision</collision>
+          </contact>
+      </sensor>
+    </link>
+
+    <link name="link1">
+			<pose frame=''>5.85 -9 2 0 -0 3.14</pose>
+        <collision name="box_collision">
+          <geometry>
+            <box>
+              <size>15 1 4</size>
+            </box>
+          </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.99</mu>
+            <mu2>0.99</mu2>
+          </ode>
+        </friction>
+      </surface>
+        </collision>
+
+   	<visual name="visual">
+          <geometry>
+            <box>
+              <size>15 1 4</size>
+            </box>
+          </geometry>
+        <material>
+          <script>
+            <uri>model://wall_adr/materials/scripts</uri>
+            <uri>model://wall_adr/materials/textures</uri>
+            <name>rightside</name>
+          </script>
+        </material>
+        <pose frame=''>0 0 0. 0 -0 0</pose>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0.0</transparency>
+        </visual>
+      <sensor name="contact_sensor_1" type="contact">
+	<plugin name="my_contact_plugin" filename="libgazebo_ros_bumper.so"/>
+          <contact>
+            <collision>box_collision</collision>
+          </contact>
+      </sensor>
+    </link>
+
+
+    <link name="link2">
+			<pose frame=''>13.8 -3.4 2 0 -0 1.57</pose>
+        <collision name="box_collision">
+          <geometry>
+            <box>
+              <size>10 1 4</size>
+            </box>
+          </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.99</mu>
+            <mu2>0.99</mu2>
+          </ode>
+        </friction>
+      </surface>
+        </collision>
+
+   	<visual name="visual">
+          <geometry>
+            <box>
+              <size>10 1 4</size>
+            </box>
+          </geometry>
+        <material>
+          <script>
+            <uri>model://wall_adr/materials/scripts</uri>
+            <uri>model://wall_adr/materials/textures</uri>
+            <name>frontside</name>
+          </script>
+        </material>
+        <pose frame=''>0 0 0. 0 -0 0</pose>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0.0</transparency>
+        </visual>
+      <sensor name="contact_sensor_1" type="contact">
+	<plugin name="my_contact_plugin" filename="libgazebo_ros_bumper.so"/>
+          <contact>
+            <collision>box_collision</collision>
+          </contact>
+      </sensor>
+    </link>
+
+    <link name="link3">
+			<pose frame=''>-2.05 -3.45 2 0 -0 1.57</pose>
+        <collision name="box_collision">
+          <geometry>
+            <box>
+              <size>10 1 4</size>
+            </box>
+          </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.99</mu>
+            <mu2>0.99</mu2>
+          </ode>
+        </friction>
+      </surface>
+        </collision>
+
+   	<visual name="visual">
+          <geometry>
+            <box>
+              <size>10 1 4</size>
+            </box>
+          </geometry>
+        <material>
+          <script>
+            <uri>model://wall_adr/materials/scripts</uri>
+            <uri>model://wall_adr/materials/textures</uri>
+            <name>backside</name>
+          </script>
+        </material>
+        <pose frame=''>0 0 0. 0 -0 0</pose>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0.0</transparency>
+        </visual>
+      <sensor name="contact_sensor_1" type="contact">
+	<plugin name="my_contact_plugin" filename="libgazebo_ros_bumper.so"/>
+          <contact>
+            <collision>box_collision</collision>
+          </contact>
+      </sensor>
+    </link>
+
+		    <plugin name="model_push" filename="libgazebo_moving_platform.so">
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+  </model>
+</sdf>
