@@ -36,7 +36,7 @@
 #include <gazebo/physics/physics.hh>
 #include <opencv2/core/core.hpp>
 
-#include <mav_msgs_rotors/default_topics.h>  // This comes from the mav_comm repo
+#include <mav_msgs/default_topics.h>  // This comes from the mav_comm repo
 
 #include "rotors_gazebo_plugins/common.h"
 #include "rotors_gazebo_plugins/sdf_api_wrapper.hpp"
@@ -69,11 +69,11 @@ class GazeboOdometryPlugin : public ModelPlugin {
       : ModelPlugin(),
         random_generator_(random_device_()),
         // DEFAULT TOPICS
-        pose_pub_topic_(mav_msgs_rotors::default_topics::POSE),
-        pose_with_covariance_stamped_pub_topic_(mav_msgs_rotors::default_topics::POSE_WITH_COVARIANCE),
-        position_stamped_pub_topic_(mav_msgs_rotors::default_topics::POSITION),
-        transform_stamped_pub_topic_(mav_msgs_rotors::default_topics::TRANSFORM),
-        odometry_pub_topic_(mav_msgs_rotors::default_topics::ODOMETRY),
+        pose_pub_topic_(mav_msgs::default_topics::POSE),
+        pose_with_covariance_stamped_pub_topic_(mav_msgs::default_topics::POSE_WITH_COVARIANCE),
+        position_stamped_pub_topic_(mav_msgs::default_topics::POSITION),
+        transform_stamped_pub_topic_(mav_msgs::default_topics::TRANSFORM),
+        odometry_pub_topic_(mav_msgs::default_topics::ODOMETRY),
         //---------------
         parent_frame_id_(kDefaultParentFrameId),
         child_frame_id_(kDefaultChildFrameId),

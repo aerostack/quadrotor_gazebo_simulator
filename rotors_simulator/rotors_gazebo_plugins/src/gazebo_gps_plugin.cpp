@@ -19,7 +19,7 @@
 #include "rotors_gazebo_plugins/gazebo_gps_plugin.h"
 
 // 3RD PARTY
-#include "mav_msgs_rotors/default_topics.h"
+#include "mav_msgs/default_topics.h"
 
 // USER
 #include "ConnectGazeboToRosTopic.pb.h"
@@ -88,10 +88,10 @@ void GazeboGpsPlugin::Load(sensors::SensorPtr _sensor, sdf::ElementPtr _sdf) {
   double ver_vel_std_dev;
 
   getSdfParam<std::string>(_sdf, "gpsTopic", gps_topic_,
-                           mav_msgs_rotors::default_topics::GPS);
+                           mav_msgs::default_topics::GPS);
 
   getSdfParam<std::string>(_sdf, "groundSpeedTopic", ground_speed_topic_,
-                           mav_msgs_rotors::default_topics::GROUND_SPEED);
+                           mav_msgs::default_topics::GROUND_SPEED);
 
   getSdfParam<double>(_sdf, "horPosStdDev", hor_pos_std_dev,
                       kDefaultHorPosStdDev);

@@ -20,7 +20,7 @@ endif ()
 find_package(catkin REQUIRED COMPONENTS
   cmake_modules
   geometry_msgs
-  mav_msgs_rotors
+  mav_msgs
   mavros
   mavros_msgs
   roscpp
@@ -32,7 +32,7 @@ find_package(Eigen REQUIRED)
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES rotors_hil_interface
-  CATKIN_DEPENDS geometry_msgs mav_msgs_rotors mavros mavros_msgs roscpp sensor_msgs
+  CATKIN_DEPENDS geometry_msgs mav_msgs mavros mavros_msgs roscpp sensor_msgs
   DEPENDS
 )
 

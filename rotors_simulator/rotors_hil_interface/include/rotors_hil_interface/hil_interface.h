@@ -17,8 +17,8 @@
 #ifndef ROTORS_HIL_INTERFACE_H_
 #define ROTORS_HIL_INTERFACE_H_
 
-#include <mav_msgs_rotors/Actuators.h>
-#include <mav_msgs_rotors/default_topics.h>
+#include <mav_msgs/Actuators.h>
+#include <mav_msgs/default_topics.h>
 #include <mavros_msgs/HilControls.h>
 #include <mavros_msgs/mavlink_convert.h>
 

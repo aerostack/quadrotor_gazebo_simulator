@@ -31,7 +31,7 @@
 #include <gazebo/gazebo.hh>
 #include <gazebo/physics/physics.hh>
 
-#include <mav_msgs_rotors/default_topics.h>  // This comes from the mav_comm repo
+#include <mav_msgs/default_topics.h>  // This comes from the mav_comm repo
 
 #include "Actuators.pb.h"
 
@@ -55,7 +55,7 @@ class GazeboControllerInterface : public ModelPlugin {
         namespace_(kDefaultNamespace),
         // DEFAULT TOPICS
         motor_velocity_reference_pub_topic_(kDefaultMotorVelocityReferenceTopic),
-        command_motor_speed_sub_topic_(mav_msgs_rotors::default_topics::COMMAND_ACTUATORS),
+        command_motor_speed_sub_topic_(mav_msgs::default_topics::COMMAND_ACTUATORS),
         //---------------
         node_handle_(NULL){}
   ~GazeboControllerInterface();

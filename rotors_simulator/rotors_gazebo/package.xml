@@ -21,7 +21,7 @@
   <!-- Dependencies needed to compile this package. -->
   <build_depend>gazebo_plugins</build_depend>
   <build_depend>rotors_gazebo_plugins</build_depend>
-  <build_depend>mav_msgs_rotors</build_depend>
+  <build_depend>mav_msgs</build_depend>
   <build_depend>gazebo_msgs</build_depend>
   <build_depend>geometry_msgs</build_depend>
   <build_depend>roscpp</build_depend>
@@ -30,7 +30,7 @@
   <!-- Dependencies needed after this package is compiled. -->
   <run_depend>gazebo_plugins</run_depend>
   <run_depend>rotors_gazebo_plugins</run_depend>
-  <run_depend>mav_msgs_rotors</run_depend>
+  <run_depend>mav_msgs</run_depend>
   <run_depend>gazebo_msgs</run_depend>
   <run_depend>geometry_msgs</run_depend>
   <run_depend>roscpp</run_depend>

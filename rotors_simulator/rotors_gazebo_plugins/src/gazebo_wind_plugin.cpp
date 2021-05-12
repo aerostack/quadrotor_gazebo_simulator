@@ -196,7 +196,7 @@ void GazeboWindPlugin::CreatePubsAndSubs() {
   // ============================================ //
   // ========== WIND SPEED MSG SETUP ============ //
   // ============================================ //
-  wind_speed_pub_ = node_handle_->Advertise<gz_mav_msgs_rotors::WindSpeed>(
+  wind_speed_pub_ = node_handle_->Advertise<gz_mav_msgs::WindSpeed>(
       "~/" + namespace_ + "/" + wind_speed_pub_topic_, 1);
 
   connect_gazebo_to_ros_topic_msg.set_gazebo_topic("~/" + namespace_ + "/" +

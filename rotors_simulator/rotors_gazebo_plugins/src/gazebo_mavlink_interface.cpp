@@ -425,7 +425,7 @@ void GazeboMavlinkInterface::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf
   
   // Publish gazebo's motor_speed message
   gzdbg << "Creating Gazebo publisher on topic \"" << "~/" + namespace_ + "/" + motor_velocity_reference_pub_topic_ << "\"." << std::endl;
-  motor_velocity_reference_pub_ = node_handle_->Advertise<gz_mav_msgs_rotors::CommandMotorSpeed>("~/" + namespace_ + "/" + motor_velocity_reference_pub_topic_, 1);
+  motor_velocity_reference_pub_ = node_handle_->Advertise<gz_mav_msgs::CommandMotorSpeed>("~/" + namespace_ + "/" + motor_velocity_reference_pub_topic_, 1);
 
   // This topic is subscribed to by gazebo_geotagged_images_plugin.cpp
   /// \todo Should this be an absolute topic!?!
@@ -508,7 +508,7 @@ void GazeboMavlinkInterface::OnUpdate(const common::UpdateInfo& /*_info*/) {
 
   if(received_first_referenc_) {
 
-    gz_mav_msgs_rotors::CommandMotorSpeed turning_velocities_msg;
+    gz_mav_msgs::CommandMotorSpeed turning_velocities_msg;
 
     for (int i = 0; i < input_reference_.size(); i++){
       if (last_actuator_time_ == 0 || (current_time - last_actuator_time_).Double() > 0.2) {

@@ -23,7 +23,7 @@
 
 #include <ctime>
 
-#include <mav_msgs_rotors/Actuators.h>
+#include <mav_msgs/Actuators.h>
 
 namespace gazebo {
 
@@ -285,7 +285,7 @@ void GazeboBagPlugin::CommandPoseCallback(
 }
 
 void GazeboBagPlugin::AttitudeThrustCallback(
-    const mav_msgs_rotors::AttitudeThrustConstPtr& control_msg) {
+    const mav_msgs::AttitudeThrustConstPtr& control_msg) {
   common::Time now = world_->SimTime();
   ros::Time ros_now = ros::Time(now.sec, now.nsec);
   writeBag(namespace_ + "/" + control_attitude_thrust_topic_, ros_now,
@@ -293,14 +293,14 @@ void GazeboBagPlugin::AttitudeThrustCallback(
 }
 
 void GazeboBagPlugin::ActuatorsCallback(
-    const mav_msgs_rotors::ActuatorsConstPtr& control_msg) {
+    const mav_msgs::ActuatorsConstPtr& control_msg) {
   common::Time now = world_->SimTime();
   ros::Time ros_now = ros::Time(now.sec, now.nsec);
   writeBag(namespace_ + "/" + control_motor_speed_topic_, ros_now, control_msg);
 }
 
 void GazeboBagPlugin::RateThrustCallback(
-    const mav_msgs_rotors::RateThrustConstPtr& control_msg) {
+    const mav_msgs::RateThrustConstPtr& control_msg) {
   common::Time now = world_->SimTime();
   ros::Time ros_now = ros::Time(now.sec, now.nsec);
   writeBag(namespace_ + "/" + control_rate_thrust_topic_, ros_now, control_msg);
@@ -316,7 +316,7 @@ void GazeboBagPlugin::WindSpeedCallback(
 void GazeboBagPlugin::LogMotorVelocities(const common::Time now) {
   ros::Time ros_now = ros::Time(now.sec, now.nsec);
 
-  mav_msgs_rotors::Actuators rot_velocities_msg;
+  mav_msgs::Actuators rot_velocities_msg;
   rot_velocities_msg.angular_velocities.resize(motor_joints_.size());
 
   MotorNumberToJointMap::iterator m;

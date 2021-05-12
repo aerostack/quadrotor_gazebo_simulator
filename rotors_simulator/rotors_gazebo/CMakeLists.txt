@@ -43,13 +43,13 @@ if(NO_ROS)
   return()
 endif()
 
-find_package(catkin REQUIRED COMPONENTS gazebo_msgs geometry_msgs mav_msgs_rotors roscpp sensor_msgs)
+find_package(catkin REQUIRED COMPONENTS gazebo_msgs geometry_msgs mav_msgs roscpp sensor_msgs)
 
 catkin_package(
   CATKIN_DEPENDS
     gazebo_msgs
     geometry_msgs
-    mav_msgs_rotors
+    mav_msgs
     roscpp
     sensor_msgs
 )

@@ -22,8 +22,8 @@
 #include <iostream>
 
 #include <Eigen/Core>
-#include <mav_msgs_rotors/conversions.h>
-#include <mav_msgs_rotors/default_topics.h>
+#include <mav_msgs/conversions.h>
+#include <mav_msgs/default_topics.h>
 #include <ros/ros.h>
 #include <trajectory_msgs/MultiDOFJointTrajectory.h>
 
@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
   ros::NodeHandle nh("");
   ros::Publisher trajectory_pub =
       nh.advertise<trajectory_msgs::MultiDOFJointTrajectory>(
-      mav_msgs_rotors::default_topics::COMMAND_TRAJECTORY, 10);
+      mav_msgs::default_topics::COMMAND_TRAJECTORY, 10);
 
   ROS_INFO("Started waypoint_publisher.");
 
@@ -63,7 +63,7 @@ int main(int argc, char** argv) {
 
   double desired_yaw = std::stof(args.at(4)) * DEG_2_RAD;
 
-  mav_msgs_rotors::msgMultiDofJointTrajectoryFromPositionYaw(desired_position,
+  mav_msgs::msgMultiDofJointTrajectoryFromPositionYaw(desired_position,
       desired_yaw, &trajectory_msg);
 
   // Wait for some time to create the ros publisher.

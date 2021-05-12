@@ -53,7 +53,7 @@ static const uint32_t kDefaultMavlinkUdpPort = 14560;
 
 namespace gazebo {
 
-typedef const boost::shared_ptr<const gz_mav_msgs_rotors::CommandMotorSpeed> CommandMotorSpeedPtr;
+typedef const boost::shared_ptr<const gz_mav_msgs::CommandMotorSpeed> CommandMotorSpeedPtr;
 typedef const boost::shared_ptr<const gz_sensor_msgs::Imu> ImuPtr;
 typedef const boost::shared_ptr<const lidar_msgs::msgs::lidar> LidarPtr;
 typedef const boost::shared_ptr<const opticalFlow_msgs::msgs::opticalFlow> OpticalFlowPtr;

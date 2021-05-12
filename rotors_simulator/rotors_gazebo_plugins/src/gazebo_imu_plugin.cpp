@@ -30,7 +30,7 @@
 #include <iostream>
 
 // 3RD PARTY
-#include "mav_msgs_rotors/default_topics.h"
+#include "mav_msgs/default_topics.h"
 
 // USER HEADERS
 #include "ConnectGazeboToRosTopic.pb.h"
@@ -90,7 +90,7 @@ void GazeboImuPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf) {
   frame_id_ = link_name_;
 
   getSdfParam<std::string>(_sdf, "imuTopic", imu_topic_,
-                           mav_msgs_rotors::default_topics::IMU);
+                           mav_msgs::default_topics::IMU);
   getSdfParam<double>(_sdf, "gyroscopeNoiseDensity",
                       imu_parameters_.gyroscope_noise_density,
                       imu_parameters_.gyroscope_noise_density);

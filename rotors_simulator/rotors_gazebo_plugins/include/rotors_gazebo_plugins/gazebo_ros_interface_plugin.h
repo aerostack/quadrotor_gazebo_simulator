@@ -28,7 +28,7 @@
 #include "gazebo/msgs/msgs.hh"
 
 //=================== ROS =====================//
-#include <mav_msgs_rotors/default_topics.h>
+#include <mav_msgs/default_topics.h>
 #include <ros/callback_queue.h>
 #include <ros/ros.h>
 #include <tf/transform_broadcaster.h>
@@ -61,7 +61,7 @@
 #include <geometry_msgs/TransformStamped.h>
 #include <geometry_msgs/TwistStamped.h>
 #include <geometry_msgs/WrenchStamped.h>
-#include <mav_msgs_rotors/Actuators.h>
+#include <mav_msgs/Actuators.h>
 #include <nav_msgs/Odometry.h>
 #include <rotors_comm/WindSpeed.h>
 #include <sensor_msgs/Imu.h>
@@ -97,7 +97,7 @@ typedef const boost::shared_ptr<const gz_geometry_msgs::Vector3dStamped>
     GzVector3dStampedMsgPtr;
 typedef const boost::shared_ptr<const gz_geometry_msgs::WrenchStamped>
     GzWrenchStampedMsgPtr;
-typedef const boost::shared_ptr<const gz_mav_msgs_rotors::WindSpeed> GzWindSpeedMsgPtr;
+typedef const boost::shared_ptr<const gz_mav_msgs::WindSpeed> GzWindSpeedMsgPtr;
 typedef const boost::shared_ptr<const gz_sensor_msgs::Actuators>
     GzActuatorsMsgPtr;
 typedef const boost::shared_ptr<const gz_sensor_msgs::Imu> GzImuPtr;
@@ -206,7 +206,7 @@ class GazeboRosInterfacePlugin : public WorldPlugin {
   // ACTUATORS
   void GzActuatorsMsgCallback(GzActuatorsMsgPtr& gz_actuators_msg,
                               ros::Publisher ros_publisher);
-  mav_msgs_rotors::Actuators ros_actuators_msg_;
+  mav_msgs::Actuators ros_actuators_msg_;
 
   // FLOAT32
   void GzFloat32MsgCallback(GzFloat32MsgPtr& gz_float_32_msg,
@@ -282,12 +282,12 @@ class GazeboRosInterfacePlugin : public WorldPlugin {
 
   // ACTUATORS (change name??? motor control? motor speed?)
   void RosActuatorsMsgCallback(
-      const mav_msgs_rotors::ActuatorsConstPtr& ros_actuators_msg_ptr,
+      const mav_msgs::ActuatorsConstPtr& ros_actuators_msg_ptr,
       gazebo::transport::PublisherPtr gz_publisher_ptr);
 
   // COMMAND MOTOR SPEED (this is the same as ACTUATORS!, merge???)
   void RosCommandMotorSpeedMsgCallback(
-      const mav_msgs_rotors::ActuatorsConstPtr& ros_command_motor_speed_msg_ptr,
+      const mav_msgs::ActuatorsConstPtr& ros_command_motor_speed_msg_ptr,
       gazebo::transport::PublisherPtr gz_publisher_ptr);
 
   // WIND SPEED

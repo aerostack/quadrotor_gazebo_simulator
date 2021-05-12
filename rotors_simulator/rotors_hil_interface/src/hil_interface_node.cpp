@@ -36,7 +36,7 @@ HilInterfaceNode::HilInterfaceNode() :
   pnh.param("body_to_sensor_roll", S_B_roll, kDefaultBodyToSensorsRoll);
   pnh.param("body_to_sensor_pitch", S_B_pitch, kDefaultBodyToSensorsPitch);
   pnh.param("body_to_sensor_yaw", S_B_yaw, kDefaultBodyToSensorsYaw);
-  pnh.param("actuators_pub_topic", actuators_pub_topic, std::string(mav_msgs_rotors::default_topics::COMMAND_ACTUATORS));
+  pnh.param("actuators_pub_topic", actuators_pub_topic, std::string(mav_msgs::default_topics::COMMAND_ACTUATORS));
   pnh.param("mavlink_pub_topic", mavlink_pub_topic, kDefaultMavlinkPubTopic);
   pnh.param("hil_controls_sub_topic", hil_controls_sub_topic, kDefaultHilControlsSubTopic);
 
@@ -54,7 +54,7 @@ HilInterfaceNode::HilInterfaceNode() :
 
   rate_ = ros::Rate(hil_frequency);
 
-  actuators_pub_ = nh_.advertise<mav_msgs_rotors::Actuators>(actuators_pub_topic, 1);
+  actuators_pub_ = nh_.advertise<mav_msgs::Actuators>(actuators_pub_topic, 1);
   mavlink_pub_ = nh_.advertise<mavros_msgs::Mavlink>(mavlink_pub_topic, 5);
   hil_controls_sub_ = nh_.subscribe(hil_controls_sub_topic, 1,
                                         &HilInterfaceNode::HilControlsCallback, this);
@@ -78,7 +78,7 @@ void HilInterfaceNode::MainTask() {
 }
 
 void HilInterfaceNode::HilControlsCallback(const mavros_msgs::HilControlsConstPtr& hil_controls_msg) {
-  mav_msgs_rotors::Actuators act_msg;
+  mav_msgs::Actuators act_msg;
 
   ros::Time current_time = ros::Time::now();
 

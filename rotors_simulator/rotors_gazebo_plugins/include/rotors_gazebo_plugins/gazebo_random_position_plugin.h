@@ -11,7 +11,7 @@
 #include <ignition/math/Rand.hh>
 #include <ignition/math/Pose3.hh>
 
-#include <mav_msgs_rotors/default_topics.h>
+#include <mav_msgs/default_topics.h>
 
 #include "rotors_gazebo_plugins/common.h"
 

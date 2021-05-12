@@ -22,8 +22,8 @@
 #include <chrono>
 
 #include <Eigen/Core>
-#include <mav_msgs_rotors/conversions.h>
-#include <mav_msgs_rotors/default_topics.h>
+#include <mav_msgs/conversions.h>
+#include <mav_msgs/default_topics.h>
 #include <ros/ros.h>
 #include <std_srvs/Empty.h>
 #include <trajectory_msgs/MultiDOFJointTrajectory.h>
@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
   ros::NodeHandle nh_private("~");
   ros::Publisher trajectory_pub =
       nh.advertise<trajectory_msgs::MultiDOFJointTrajectory>(
-          mav_msgs_rotors::default_topics::COMMAND_TRAJECTORY, 10);
+          mav_msgs::default_topics::COMMAND_TRAJECTORY, 10);
   ROS_INFO("Started hovering example.");
 
   std_srvs::Empty srv;
@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
   nh_private.param("z", desired_position.z(), desired_position.z());
   nh_private.param("yaw", desired_yaw, desired_yaw);
 
-  mav_msgs_rotors::msgMultiDofJointTrajectoryFromPositionYaw(
+  mav_msgs::msgMultiDofJointTrajectoryFromPositionYaw(
       desired_position, desired_yaw, &trajectory_msg);
 
   ROS_INFO("Publishing waypoint on namespace %s: [%f, %f, %f].",

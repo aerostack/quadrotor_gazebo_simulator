@@ -26,9 +26,9 @@
 #include <stdio.h>
 
 #include <geometry_msgs/PoseStamped.h>
-#include <mav_msgs_rotors/Actuators.h>
-#include <mav_msgs_rotors/AttitudeThrust.h>
-#include <mav_msgs_rotors/eigen_mav_msgs_rotors.h>
+#include <mav_msgs/Actuators.h>
+#include <mav_msgs/AttitudeThrust.h>
+#include <mav_msgs/eigen_mav_msgs.h>
 #include <nav_msgs/Odometry.h>
 #include <ros/callback_queue.h>
 #include <ros/ros.h>
@@ -61,7 +61,7 @@ class LeePositionControllerNode {
 
   ros::Publisher motor_velocity_reference_pub_;
 
-  mav_msgs_rotors::EigenTrajectoryPointDeque commands_;
+  mav_msgs::EigenTrajectoryPointDeque commands_;
   std::deque<ros::Duration> command_waiting_times_;
   ros::Timer command_timer_;
 

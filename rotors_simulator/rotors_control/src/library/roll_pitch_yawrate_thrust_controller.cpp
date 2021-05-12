@@ -80,7 +80,7 @@ void RollPitchYawrateThrustController::SetOdometry(const EigenOdometry& odometry
 }
 
 void RollPitchYawrateThrustController::SetRollPitchYawrateThrust(
-    const mav_msgs_rotors::EigenRollPitchYawrateThrust& roll_pitch_yawrate_thrust) {
+    const mav_msgs::EigenRollPitchYawrateThrust& roll_pitch_yawrate_thrust) {
   roll_pitch_yawrate_thrust_ = roll_pitch_yawrate_thrust;
   controller_active_ = true;
 }

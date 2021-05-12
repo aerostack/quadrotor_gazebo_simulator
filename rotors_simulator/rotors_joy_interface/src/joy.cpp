@@ -21,13 +21,13 @@
 
 #include "rotors_joy_interface/joy.h"
 
-#include <mav_msgs_rotors/default_topics.h>
+#include <mav_msgs/default_topics.h>
 
 Joy::Joy() {
   ros::NodeHandle nh;
   ros::NodeHandle pnh("~");
-  ctrl_pub_ = nh_.advertise<mav_msgs_rotors::RollPitchYawrateThrust> (
-    mav_msgs_rotors::default_topics::COMMAND_ROLL_PITCH_YAWRATE_THRUST, 10);
+  ctrl_pub_ = nh_.advertise<mav_msgs::RollPitchYawrateThrust> (
+    mav_msgs::default_topics::COMMAND_ROLL_PITCH_YAWRATE_THRUST, 10);
 
   control_msg_.roll = 0;
   control_msg_.pitch = 0;

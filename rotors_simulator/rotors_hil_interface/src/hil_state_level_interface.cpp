@@ -27,10 +27,10 @@ HilStateLevelInterface::HilStateLevelInterface(const Eigen::Quaterniond& q_S_B) 
   std::string ground_speed_sub_topic;
   std::string imu_sub_topic;
 
-  pnh.param("air_speed_topic", air_speed_sub_topic, std::string(mav_msgs_rotors::default_topics::AIR_SPEED));
-  pnh.param("gps_topic", gps_sub_topic, std::string(mav_msgs_rotors::default_topics::GPS));
-  pnh.param("ground_speed_topic", ground_speed_sub_topic, std::string(mav_msgs_rotors::default_topics::GROUND_SPEED));
-  pnh.param("imu_topic", imu_sub_topic, std::string(mav_msgs_rotors::default_topics::IMU));
+  pnh.param("air_speed_topic", air_speed_sub_topic, std::string(mav_msgs::default_topics::AIR_SPEED));
+  pnh.param("gps_topic", gps_sub_topic, std::string(mav_msgs::default_topics::GPS));
+  pnh.param("ground_speed_topic", ground_speed_sub_topic, std::string(mav_msgs::default_topics::GROUND_SPEED));
+  pnh.param("imu_topic", imu_sub_topic, std::string(mav_msgs::default_topics::IMU));
 
   // Compute the rotation matrix to rotate data into NED frame
   q_S_B_ = q_S_B;

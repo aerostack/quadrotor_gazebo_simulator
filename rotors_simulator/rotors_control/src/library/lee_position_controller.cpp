@@ -86,7 +86,7 @@ void LeePositionController::SetOdometry(const EigenOdometry& odometry) {
 }
 
 void LeePositionController::SetTrajectoryPoint(
-    const mav_msgs_rotors::EigenTrajectoryPoint& command_trajectory) {
+    const mav_msgs::EigenTrajectoryPoint& command_trajectory) {
   command_trajectory_ = command_trajectory;
   controller_active_ = true;
 }

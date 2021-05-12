@@ -17,7 +17,7 @@
 // MODULE HEADER INCLUDE
 #include "rotors_gazebo_plugins/gazebo_magnetometer_plugin.h"
 
-#include <mav_msgs_rotors/default_topics.h>  // This comes from the mav_comm repo
+#include <mav_msgs/default_topics.h>  // This comes from the mav_comm repo
 
 #include "ConnectGazeboToRosTopic.pb.h"
 
@@ -79,7 +79,7 @@ void GazeboMagnetometerPlugin::Load(physics::ModelPtr _model,
 
   // Retrieve the rest of the SDF parameters
   getSdfParam<std::string>(_sdf, "magnetometerTopic", magnetometer_topic_,
-                           mav_msgs_rotors::default_topics::MAGNETIC_FIELD);
+                           mav_msgs::default_topics::MAGNETIC_FIELD);
 
   getSdfParam<double>(_sdf, "refMagNorth", ref_mag_north, kDefaultRefMagNorth);
   getSdfParam<double>(_sdf, "refMagEast", ref_mag_east, kDefaultRefMagEast);

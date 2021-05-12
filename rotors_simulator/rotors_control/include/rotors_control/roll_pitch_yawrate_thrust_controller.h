@@ -21,8 +21,8 @@
 #ifndef ROTORS_CONTROL_ROLL_PITCH_YAWRATE_THRUST_CONTROLLER_H
 #define ROTORS_CONTROL_ROLL_PITCH_YAWRATE_THRUST_CONTROLLER_H
 
-#include <mav_msgs_rotors/conversions.h>
-#include <mav_msgs_rotors/eigen_mav_msgs_rotors.h>
+#include <mav_msgs/conversions.h>
+#include <mav_msgs/eigen_mav_msgs.h>
 
 #include "rotors_control/common.h"
 #include "rotors_control/parameters.h"
@@ -57,7 +57,7 @@ class RollPitchYawrateThrustController {
 
   void SetOdometry(const EigenOdometry& odometry);
   void SetRollPitchYawrateThrust(
-      const mav_msgs_rotors::EigenRollPitchYawrateThrust& roll_pitch_yawrate_thrust);
+      const mav_msgs::EigenRollPitchYawrateThrust& roll_pitch_yawrate_thrust);
 
   RollPitchYawrateThrustControllerParameters controller_parameters_;
   VehicleParameters vehicle_parameters_;
@@ -71,7 +71,7 @@ class RollPitchYawrateThrustController {
   Eigen::Vector3d normalized_angular_rate_gain_;
   Eigen::MatrixX4d angular_acc_to_rotor_velocities_;
 
-  mav_msgs_rotors::EigenRollPitchYawrateThrust roll_pitch_yawrate_thrust_;
+  mav_msgs::EigenRollPitchYawrateThrust roll_pitch_yawrate_thrust_;
   EigenOdometry odometry_;
 
   void ComputeDesiredAngularAcc(Eigen::Vector3d* angular_acceleration) const;

@@ -21,8 +21,8 @@
 #ifndef ROTORS_CONTROL_LEE_POSITION_CONTROLLER_H
 #define ROTORS_CONTROL_LEE_POSITION_CONTROLLER_H
 
-#include <mav_msgs_rotors/conversions.h>
-#include <mav_msgs_rotors/eigen_mav_msgs_rotors.h>
+#include <mav_msgs/conversions.h>
+#include <mav_msgs/eigen_mav_msgs.h>
 
 #include "rotors_control/common.h"
 #include "rotors_control/parameters.h"
@@ -63,7 +63,7 @@ class LeePositionController {
 
   void SetOdometry(const EigenOdometry& odometry);
   void SetTrajectoryPoint(
-    const mav_msgs_rotors::EigenTrajectoryPoint& command_trajectory);
+    const mav_msgs::EigenTrajectoryPoint& command_trajectory);
 
   LeePositionControllerParameters controller_parameters_;
   VehicleParameters vehicle_parameters_;
@@ -77,7 +77,7 @@ class LeePositionController {
   Eigen::Vector3d normalized_angular_rate_gain_;
   Eigen::MatrixX4d angular_acc_to_rotor_velocities_;
 
-  mav_msgs_rotors::EigenTrajectoryPoint command_trajectory_;
+  mav_msgs::EigenTrajectoryPoint command_trajectory_;
   EigenOdometry odometry_;
 
   void ComputeDesiredAngularAcc(const Eigen::Vector3d& acceleration,

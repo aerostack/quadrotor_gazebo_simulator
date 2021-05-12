@@ -44,7 +44,7 @@ endif()
 
 # Add any additional include directories as specified by the calling process (either user or another CMake file).
 # ASL: Doesn't use this, catkin manages the mav_comm dependency
-# PX4: Provides include directory for mav_msgs_rotors, so that "mav_msgs_rotors/default_topics.h" can be found and used.
+# PX4: Provides include directory for mav_msgs, so that "mav_msgs/default_topics.h" can be found and used.
 include_directories(${ADDITIONAL_INCLUDE_DIRS})
 
 set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
@@ -97,7 +97,7 @@ if (NOT NO_ROS)
     cmake_modules
     cv_bridge
     geometry_msgs
-    mav_msgs_rotors
+    mav_msgs
     octomap_msgs
     octomap_ros
     rosbag
@@ -165,13 +165,13 @@ file(GLOB msgs msgs/*.proto)
 PROTOBUF_GENERATE_CPP(PROTO_SRCS PROTO_HDRS ${msgs})
 
 # Create a shared library of protobuf messages (.so extension on Linux platforms)
-add_library(mav_msgs_rotors SHARED ${PROTO_SRCS})
-target_link_libraries(mav_msgs_rotors ${PROTOBUF_LIBRARY} gazebo_msgs)
+add_library(mav_msgs SHARED ${PROTO_SRCS})
+target_link_libraries(mav_msgs ${PROTOBUF_LIBRARY} gazebo_msgs)
 
-# This causes mav_msgs_rotors to be linked with every created library in this file from this
+# This causes mav_msgs to be linked with every created library in this file from this
 # point forward.
 # NOTE: This is deprecated, should be using target_link_libraries instead
-link_libraries(mav_msgs_rotors)
+link_libraries(mav_msgs)
 
 
 # ============================================== #
@@ -182,7 +182,7 @@ if (NOT NO_ROS)
   catkin_package(
     INCLUDE_DIRS include ${Eigen_INCLUDE_DIRS} ${CATKIN_DEVEL_PREFIX}/include/${PACKAGE_NAME}
     LIBRARIES rotors_gazebo_motor_model rotors_gazebo_controller_interface
-    CATKIN_DEPENDS cv_bridge geometry_msgs mav_msgs_rotors octomap_msgs octomap_ros rosbag roscpp rotors_comm rotors_control std_srvs tf
+    CATKIN_DEPENDS cv_bridge geometry_msgs mav_msgs octomap_msgs octomap_ros rosbag roscpp rotors_comm rotors_control std_srvs tf
     DEPENDS eigen gazebo octomap opencv
     #CFG_EXTRAS rotors_gazebo_plugins.cmake
   )
@@ -420,7 +420,7 @@ if (BUILD_MAVLINK_INTERFACE_PLUGIN)
 
   # Note that this library includes TWO .cpp files.
   add_library(rotors_gazebo_mavlink_interface SHARED src/gazebo_mavlink_interface.cpp src/geo_mag_declination.cpp)
-  target_link_libraries(rotors_gazebo_mavlink_interface ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES} ${mav_msgs_rotors})
+  target_link_libraries(rotors_gazebo_mavlink_interface ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES} ${mav_msgs})
   #add_dependencies(rotors_gazebo_mavlink_interface ${catkin_EXPORTED_TARGETS} ${mavros_EXPORTED_TARGETS} ${mavros_msgs_EXPORTED_TARGETS})
   list(APPEND targets_to_install rotors_gazebo_mavlink_interface)
 endif()

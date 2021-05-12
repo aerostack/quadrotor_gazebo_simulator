@@ -30,7 +30,7 @@
 #include <gazebo/gazebo.hh>
 #include <gazebo/physics/physics.hh>
 
-#include <mav_msgs_rotors/default_topics.h>  // This comes from the mav_comm repo
+#include <mav_msgs/default_topics.h>  // This comes from the mav_comm repo
 
 #include "Actuators.pb.h"
 #include "JointState.pb.h"
@@ -53,7 +53,7 @@ class GazeboMultirotorBasePlugin : public ModelPlugin {
       : ModelPlugin(),
         namespace_(kDefaultNamespace),
         joint_state_pub_topic_(kDefaultJointStatePubTopic),
-        actuators_pub_topic_(mav_msgs_rotors::default_topics::MOTOR_MEASUREMENT),
+        actuators_pub_topic_(mav_msgs::default_topics::MOTOR_MEASUREMENT),
         link_name_(kDefaultLinkName),
         frame_id_(kDefaultFrameId),
         rotor_velocity_slowdown_sim_(kDefaultRotorVelocitySlowdownSim),

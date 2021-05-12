@@ -33,10 +33,10 @@
 #include <geometry_msgs/PoseStamped.h>
 #include <geometry_msgs/TwistStamped.h>
 #include <geometry_msgs/WrenchStamped.h>
-#include <mav_msgs_rotors/Actuators.h>
-#include <mav_msgs_rotors/AttitudeThrust.h>
-#include <mav_msgs_rotors/default_topics.h>
-#include <mav_msgs_rotors/RateThrust.h>
+#include <mav_msgs/Actuators.h>
+#include <mav_msgs/AttitudeThrust.h>
+#include <mav_msgs/default_topics.h>
+#include <mav_msgs/RateThrust.h>
 #include <ros/ros.h>
 #include <rosbag/bag.h>
 #include <sensor_msgs/Imu.h>
@@ -69,18 +69,18 @@ class GazeboBagPlugin : public ModelPlugin {
       : ModelPlugin(),
         namespace_(kDefaultNamespace),
         // DEFAULT TOPICS
-        ground_truth_pose_topic_(mav_msgs_rotors::default_topics::GROUND_TRUTH_POSE),
-        ground_truth_twist_topic_(mav_msgs_rotors::default_topics::GROUND_TRUTH_TWIST),
-        imu_topic_(mav_msgs_rotors::default_topics::IMU),
-        control_attitude_thrust_topic_(mav_msgs_rotors::default_topics::COMMAND_ATTITUDE_THRUST),
-        control_motor_speed_topic_(mav_msgs_rotors::default_topics::COMMAND_ACTUATORS),
-        control_rate_thrust_topic_(mav_msgs_rotors::default_topics::COMMAND_RATE_THRUST),
-        wind_speed_topic_(mav_msgs_rotors::default_topics::WIND_SPEED),
-        motor_topic_(mav_msgs_rotors::default_topics::MOTOR_MEASUREMENT),
-        wrench_topic_(mav_msgs_rotors::default_topics::WRENCH),
-        external_force_topic_(mav_msgs_rotors::default_topics::EXTERNAL_FORCE),
-        waypoint_topic_(mav_msgs_rotors::default_topics::COMMAND_TRAJECTORY),
-        command_pose_topic_(mav_msgs_rotors::default_topics::COMMAND_POSE),
+        ground_truth_pose_topic_(mav_msgs::default_topics::GROUND_TRUTH_POSE),
+        ground_truth_twist_topic_(mav_msgs::default_topics::GROUND_TRUTH_TWIST),
+        imu_topic_(mav_msgs::default_topics::IMU),
+        control_attitude_thrust_topic_(mav_msgs::default_topics::COMMAND_ATTITUDE_THRUST),
+        control_motor_speed_topic_(mav_msgs::default_topics::COMMAND_ACTUATORS),
+        control_rate_thrust_topic_(mav_msgs::default_topics::COMMAND_RATE_THRUST),
+        wind_speed_topic_(mav_msgs::default_topics::WIND_SPEED),
+        motor_topic_(mav_msgs::default_topics::MOTOR_MEASUREMENT),
+        wrench_topic_(mav_msgs::default_topics::WRENCH),
+        external_force_topic_(mav_msgs::default_topics::EXTERNAL_FORCE),
+        waypoint_topic_(mav_msgs::default_topics::COMMAND_TRAJECTORY),
+        command_pose_topic_(mav_msgs::default_topics::COMMAND_POSE),
         //---------------
         frame_id_(kDefaultFrameId),
         link_name_(kDefaultLinkName),
@@ -127,16 +127,16 @@ class GazeboBagPlugin : public ModelPlugin {
   void CommandPoseCallback(const geometry_msgs::PoseStampedConstPtr& pose_msg);
 
   /// \brief Called when a AttitudeThrust message is received.
-  /// \param[in] control_msg A AttitudeThrust message from mav_msgs_rotors.
-  void AttitudeThrustCallback(const mav_msgs_rotors::AttitudeThrustConstPtr& control_msg);
+  /// \param[in] control_msg A AttitudeThrust message from mav_msgs.
+  void AttitudeThrustCallback(const mav_msgs::AttitudeThrustConstPtr& control_msg);
 
   /// \brief Called when a Actuators message is received.
-  /// \param[in] control_msg A Actuators message from mav_msgs_rotors.
-  void ActuatorsCallback(const mav_msgs_rotors::ActuatorsConstPtr& control_msg);
+  /// \param[in] control_msg A Actuators message from mav_msgs.
+  void ActuatorsCallback(const mav_msgs::ActuatorsConstPtr& control_msg);
 
   /// \brief Called when a RateThrust message is received.
-  /// \param[in] control_msg A RateThrust message from mav_msgs_rotors.
-  void RateThrustCallback(const mav_msgs_rotors::RateThrustConstPtr& control_msg);
+  /// \param[in] control_msg A RateThrust message from mav_msgs.
+  void RateThrustCallback(const mav_msgs::RateThrustConstPtr& control_msg);
 
   /// \brief Called when a WindSpeed message is received.
   /// \param[in] wind_speed_msg A WindSpeed message from rotors_comm.

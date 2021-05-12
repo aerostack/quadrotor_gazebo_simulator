@@ -23,8 +23,8 @@
 
 #include <assert.h>
 
-#include <mav_msgs_rotors/conversions.h>
-#include <mav_msgs_rotors/default_topics.h>
+#include <mav_msgs/conversions.h>
+#include <mav_msgs/default_topics.h>
 #include <nav_msgs/Odometry.h>
 
 #include "rotors_control/parameters.h"
@@ -34,16 +34,16 @@ namespace rotors_control {
 // Default values.
 static const std::string kDefaultNamespace = "";
 static const std::string kDefaultCommandMotorSpeedTopic =
-    mav_msgs_rotors::default_topics::COMMAND_ACTUATORS; // "command/motor_speed";
+    mav_msgs::default_topics::COMMAND_ACTUATORS; // "command/motor_speed";
 static const std::string kDefaultCommandMultiDofJointTrajectoryTopic =
-    mav_msgs_rotors::default_topics::COMMAND_TRAJECTORY; // "command/trajectory"
+    mav_msgs::default_topics::COMMAND_TRAJECTORY; // "command/trajectory"
 static const std::string kDefaultCommandRollPitchYawrateThrustTopic =
-    mav_msgs_rotors::default_topics::COMMAND_ROLL_PITCH_YAWRATE_THRUST;
+    mav_msgs::default_topics::COMMAND_ROLL_PITCH_YAWRATE_THRUST;
     // "command/roll_pitch_yawrate_thrust"
 static const std::string kDefaultImuTopic =
-    mav_msgs_rotors::default_topics::IMU; // "imu
+    mav_msgs::default_topics::IMU; // "imu
 static const std::string kDefaultOdometryTopic =
-    mav_msgs_rotors::default_topics::ODOMETRY; // "odometry"
+    mav_msgs::default_topics::ODOMETRY; // "odometry"
 
 struct EigenOdometry {
   EigenOdometry()
@@ -70,10 +70,10 @@ struct EigenOdometry {
 
 inline void eigenOdometryFromMsg(const nav_msgs::OdometryConstPtr& msg,
                                  EigenOdometry* odometry) {
-  odometry->position = mav_msgs_rotors::vector3FromPointMsg(msg->pose.pose.position);
-  odometry->orientation = mav_msgs_rotors::quaternionFromMsg(msg->pose.pose.orientation);
-  odometry->velocity = mav_msgs_rotors::vector3FromMsg(msg->twist.twist.linear);
-  odometry->angular_velocity = mav_msgs_rotors::vector3FromMsg(msg->twist.twist.angular);
+  odometry->position = mav_msgs::vector3FromPointMsg(msg->pose.pose.position);
+  odometry->orientation = mav_msgs::quaternionFromMsg(msg->pose.pose.orientation);
+  odometry->velocity = mav_msgs::vector3FromMsg(msg->twist.twist.linear);
+  odometry->angular_velocity = mav_msgs::vector3FromMsg(msg->twist.twist.angular);
 }
 
 inline void calculateAllocationMatrix(const RotorConfiguration& rotor_configuration,

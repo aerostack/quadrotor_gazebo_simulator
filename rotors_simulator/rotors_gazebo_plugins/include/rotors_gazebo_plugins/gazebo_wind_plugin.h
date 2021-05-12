@@ -30,7 +30,7 @@
 #include <gazebo/gazebo.hh>
 #include <gazebo/physics/physics.hh>
 
-#include <mav_msgs_rotors/default_topics.h>  // This comes from the mav_comm repo
+#include <mav_msgs/default_topics.h>  // This comes from the mav_comm repo
 
 #include "rotors_gazebo_plugins/common.h"
 
@@ -67,8 +67,8 @@ class GazeboWindPlugin : public ModelPlugin {
   GazeboWindPlugin()
       : ModelPlugin(),
         namespace_(kDefaultNamespace),
-        wind_force_pub_topic_(mav_msgs_rotors::default_topics::EXTERNAL_FORCE),
-        wind_speed_pub_topic_(mav_msgs_rotors::default_topics::WIND_SPEED),
+        wind_force_pub_topic_(mav_msgs::default_topics::EXTERNAL_FORCE),
+        wind_speed_pub_topic_(mav_msgs::default_topics::WIND_SPEED),
         wind_force_mean_(kDefaultWindForceMean),
         wind_force_variance_(kDefaultWindForceVariance),
         wind_gust_force_mean_(kDefaultWindGustForceMean),
@@ -148,7 +148,7 @@ class GazeboWindPlugin : public ModelPlugin {
   /// \brief    Gazebo message for sending wind speed data.
   /// \details  This is defined at the class scope so that it is re-created
   ///           everytime a wind speed message needs to be sent, increasing performance.
-  gz_mav_msgs_rotors::WindSpeed wind_speed_msg_;
+  gz_mav_msgs::WindSpeed wind_speed_msg_;
 };
 }
 

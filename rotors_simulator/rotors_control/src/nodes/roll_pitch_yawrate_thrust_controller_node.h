@@ -26,8 +26,8 @@
 #include <stdio.h>
 
 #include <geometry_msgs/PoseStamped.h>
-#include <mav_msgs_rotors/RollPitchYawrateThrust.h>
-#include <mav_msgs_rotors/Actuators.h>
+#include <mav_msgs/RollPitchYawrateThrust.h>
+#include <mav_msgs/Actuators.h>
 #include <nav_msgs/Odometry.h>
 #include <ros/ros.h>
 #include <ros/callback_queue.h>
@@ -58,7 +58,7 @@ class RollPitchYawrateThrustControllerNode {
   ros::Publisher motor_velocity_reference_pub_;
 
   void RollPitchYawrateThrustCallback(
-      const mav_msgs_rotors::RollPitchYawrateThrustConstPtr& roll_pitch_yawrate_thrust_reference_msg);
+      const mav_msgs::RollPitchYawrateThrustConstPtr& roll_pitch_yawrate_thrust_reference_msg);
 
   void OdometryCallback(const nav_msgs::OdometryConstPtr& odometry_msg);
 };

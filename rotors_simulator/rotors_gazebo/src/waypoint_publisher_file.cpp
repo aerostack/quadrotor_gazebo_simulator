@@ -22,9 +22,9 @@
 #include <iostream>
 
 #include <Eigen/Geometry>
-#include <mav_msgs_rotors/conversions.h>
-#include <mav_msgs_rotors/default_topics.h>
-#include <mav_msgs_rotors/eigen_mav_msgs_rotors.h>
+#include <mav_msgs/conversions.h>
+#include <mav_msgs/default_topics.h>
+#include <mav_msgs/eigen_mav_msgs.h>
 #include <ros/ros.h>
 #include <sensor_msgs/Imu.h>
 #include <trajectory_msgs/MultiDOFJointTrajectory.h>
@@ -93,7 +93,7 @@ int main(int argc, char** argv) {
 
   ros::Publisher wp_pub =
       nh.advertise<trajectory_msgs::MultiDOFJointTrajectory>(
-      mav_msgs_rotors::default_topics::COMMAND_TRAJECTORY, 10);
+      mav_msgs::default_topics::COMMAND_TRAJECTORY, 10);
 
   ROS_INFO("Wait for simulation to become ready...");
 
@@ -117,14 +117,14 @@ int main(int argc, char** argv) {
   for (size_t i = 0; i < waypoints.size(); ++i) {
     WaypointWithTime& wp = waypoints[i];
 
-    mav_msgs_rotors::EigenTrajectoryPoint trajectory_point;
+    mav_msgs::EigenTrajectoryPoint trajectory_point;
     trajectory_point.position_W = wp.position;
     trajectory_point.setFromYaw(wp.yaw);
     trajectory_point.time_from_start_ns = time_from_start_ns;
 
     time_from_start_ns += static_cast<int64_t>(wp.waiting_time * kNanoSecondsInSecond);
 
-    mav_msgs_rotors::msgMultiDofJointTrajectoryPointFromEigen(trajectory_point, &msg->points[i]);
+    mav_msgs::msgMultiDofJointTrajectoryPointFromEigen(trajectory_point, &msg->points[i]);
   }
   wp_pub.publish(msg);
 

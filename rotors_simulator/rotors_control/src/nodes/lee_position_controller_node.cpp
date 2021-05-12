@@ -19,7 +19,7 @@
  */
 
 #include <ros/ros.h>
-#include <mav_msgs_rotors/default_topics.h>
+#include <mav_msgs/default_topics.h>
 
 #include "lee_position_controller_node.h"
 
@@ -33,18 +33,18 @@ LeePositionControllerNode::LeePositionControllerNode() {
   ros::NodeHandle nh;
 
   cmd_pose_sub_ = nh.subscribe(
-      mav_msgs_rotors::default_topics::COMMAND_POSE, 1,
+      mav_msgs::default_topics::COMMAND_POSE, 1,
       &LeePositionControllerNode::CommandPoseCallback, this);
 
   cmd_multi_dof_joint_trajectory_sub_ = nh.subscribe(
-      mav_msgs_rotors::default_topics::COMMAND_TRAJECTORY, 1,
+      mav_msgs::default_topics::COMMAND_TRAJECTORY, 1,
       &LeePositionControllerNode::MultiDofJointTrajectoryCallback, this);
 
-  odometry_sub_ = nh.subscribe(mav_msgs_rotors::default_topics::ODOMETRY, 1,
+  odometry_sub_ = nh.subscribe(mav_msgs::default_topics::ODOMETRY, 1,
                                &LeePositionControllerNode::OdometryCallback, this);
 
-  motor_velocity_reference_pub_ = nh.advertise<mav_msgs_rotors::Actuators>(
-      mav_msgs_rotors::default_topics::COMMAND_ACTUATORS, 1);
+  motor_velocity_reference_pub_ = nh.advertise<mav_msgs::Actuators>(
+      mav_msgs::default_topics::COMMAND_ACTUATORS, 1);
 
   command_timer_ = nh.createTimer(ros::Duration(0), &LeePositionControllerNode::TimedCommandCallback, this,
                                   true, false);
@@ -105,8 +105,8 @@ void LeePositionControllerNode::CommandPoseCallback(
   commands_.clear();
   command_waiting_times_.clear();
 
-  mav_msgs_rotors::EigenTrajectoryPoint eigen_reference;
-  mav_msgs_rotors::eigenTrajectoryPointFromPoseMsg(*pose_msg, &eigen_reference);
+  mav_msgs::EigenTrajectoryPoint eigen_reference;
+  mav_msgs::eigenTrajectoryPointFromPoseMsg(*pose_msg, &eigen_reference);
   commands_.push_front(eigen_reference);
 
   lee_position_controller_.SetTrajectoryPoint(commands_.front());
@@ -127,15 +127,15 @@ void LeePositionControllerNode::MultiDofJointTrajectoryCallback(
     return;
   }
 
-  mav_msgs_rotors::EigenTrajectoryPoint eigen_reference;
-  mav_msgs_rotors::eigenTrajectoryPointFromMsg(msg->points.front(), &eigen_reference);
+  mav_msgs::EigenTrajectoryPoint eigen_reference;
+  mav_msgs::eigenTrajectoryPointFromMsg(msg->points.front(), &eigen_reference);
   commands_.push_front(eigen_reference);
 
   for (size_t i = 1; i < n_commands; ++i) {
     const trajectory_msgs::MultiDOFJointTrajectoryPoint& reference_before = msg->points[i-1];
     const trajectory_msgs::MultiDOFJointTrajectoryPoint& current_reference = msg->points[i];
 
-    mav_msgs_rotors::eigenTrajectoryPointFromMsg(current_reference, &eigen_reference);
+    mav_msgs::eigenTrajectoryPointFromMsg(current_reference, &eigen_reference);
 
     commands_.push_back(eigen_reference);
     command_waiting_times_.push_back(current_reference.time_from_start - reference_before.time_from_start);
@@ -159,7 +159,7 @@ void LeePositionControllerNode::TimedCommandCallback(const ros::TimerEvent& e) {
     return;
   }
 
-  const mav_msgs_rotors::EigenTrajectoryPoint eigen_reference = commands_.front();
+  const mav_msgs::EigenTrajectoryPoint eigen_reference = commands_.front();
   lee_position_controller_.SetTrajectoryPoint(commands_.front());
   commands_.pop_front();
   command_timer_.stop();
@@ -182,7 +182,7 @@ void LeePositionControllerNode::OdometryCallback(const nav_msgs::OdometryConstPt
   lee_position_controller_.CalculateRotorVelocities(&ref_rotor_velocities);
 
   // Todo(ffurrer): Do this in the conversions header.
-  mav_msgs_rotors::ActuatorsPtr actuator_msg(new mav_msgs_rotors::Actuators);
+  mav_msgs::ActuatorsPtr actuator_msg(new mav_msgs::Actuators);
 
   actuator_msg->angular_velocities.clear();
   for (int i = 0; i < ref_rotor_velocities.size(); i++)

@@ -32,7 +32,7 @@
 #include <gazebo/common/Plugin.hh>
 #include <gazebo/gazebo.hh>
 #include <gazebo/physics/physics.hh>
-#include <mav_msgs_rotors/default_topics.h>  // This comes from the mav_comm repo
+#include <mav_msgs/default_topics.h>  // This comes from the mav_comm repo
 
 // USER
 #include "rotors_gazebo_plugins/common.h"
@@ -52,8 +52,8 @@ namespace gazebo {
 //static const std::string kDefaultCommandSubTopic = "gazebo/command/motor_speed";
 //static const std::string kDefaultWindSpeedSubTopic = "gazebo/wind_speed";
 
-typedef const boost::shared_ptr<const gz_mav_msgs_rotors::CommandMotorSpeed> GzCommandMotorSpeedMsgPtr;
-typedef const boost::shared_ptr<const gz_mav_msgs_rotors::WindSpeed> GzWindSpeedMsgPtr;
+typedef const boost::shared_ptr<const gz_mav_msgs::CommandMotorSpeed> GzCommandMotorSpeedMsgPtr;
+typedef const boost::shared_ptr<const gz_mav_msgs::WindSpeed> GzWindSpeedMsgPtr;
 
 // Set the max_force_ to the max double value. The limitations get handled by the FirstOrderFilter.
 static constexpr double kDefaultMaxForce = std::numeric_limits<double>::max();
@@ -71,9 +71,9 @@ class GazeboMotorModel : public MotorModel, public ModelPlugin {
   GazeboMotorModel()
       : ModelPlugin(),
         MotorModel(),
-        command_sub_topic_(mav_msgs_rotors::default_topics::COMMAND_ACTUATORS),
-        wind_speed_sub_topic_(mav_msgs_rotors::default_topics::WIND_SPEED),
-        motor_speed_pub_topic_(mav_msgs_rotors::default_topics::MOTOR_MEASUREMENT),
+        command_sub_topic_(mav_msgs::default_topics::COMMAND_ACTUATORS),
+        wind_speed_sub_topic_(mav_msgs::default_topics::WIND_SPEED),
+        motor_speed_pub_topic_(mav_msgs::default_topics::MOTOR_MEASUREMENT),
         motor_number_(0),
         turning_direction_(turning_direction::CW),
         max_force_(kDefaultMaxForce),
