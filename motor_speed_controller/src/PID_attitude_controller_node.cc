@@ -35,9 +35,9 @@ PIDAttitudeControllerNode::PIDAttitudeControllerNode(const ros::NodeHandle& nh,
   ros::param::get("~motor_speed_topic", motor_speed_topic_str);
   ros::param::get("~roll_pitch_yawrate_thrust_topic", roll_pitch_yawrate_thrust_topic_str);
 
-  //command_roll_pitch_yawrate_thrust_sub_ = nh_.subscribe(
-  //    roll_pitch_yawrate_thrust_topic_str, 1,
-  //    &PIDAttitudeControllerNode::CommandRollPitchYawRateThrustCallback, this, ros::TransportHints().tcpNoDelay());
+  command_roll_pitch_yawrate_thrust_sub_ = nh_.subscribe(
+      roll_pitch_yawrate_thrust_topic_str, 1,
+      &PIDAttitudeControllerNode::CommandRollPitchYawRateThrustCallback, this, ros::TransportHints().tcpNoDelay());
 
   command_thrust_sub_ = nh_.subscribe(
       "actuator_command/thrust", 1,
