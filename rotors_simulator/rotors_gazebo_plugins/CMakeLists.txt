@@ -10,6 +10,8 @@
 
 cmake_minimum_required(VERSION 2.8.3)
 project(rotors_gazebo_plugins)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #
 #if ( ${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR} )
 #  message( FATAL_ERROR "In-source builds not allowed. Please make a new directory (called a build directory) and run CMake from there. You may need to remove CMakeCache.txt." )
@@ -81,7 +83,7 @@ endif()
 
 
 # Specify C++11 standard
-add_definitions(-std=c++11)
+#add_definitions(-std=c++11)
 
 # Provides a compiler flag notifying the preprocessor about
 # the MAVLink Interface plugin build status
@@ -329,7 +331,7 @@ message(STATUS "${GAZEBO_VERSION_MAJOR}")
 
 if(${gazebo_VERSION_MAJOR} GREATER 4)
   add_library(gazebo_geotagged_images_plugin SHARED src/external/gazebo_geotagged_images_plugin.cpp)
-  target_link_libraries(gazebo_geotagged_images_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
+  target_link_libraries(gazebo_geotagged_images_plugin ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${GAZEBO_LIBRARIES})
   if (NOT NO_ROS)
     add_dependencies(gazebo_geotagged_images_plugin ${catkin_EXPORTED_TARGETS})
   endif()

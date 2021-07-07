@@ -22,9 +22,9 @@
 #include <iostream>
 
 #include <boost/filesystem.hpp>
-#include <cv.h>
-#include <highgui.h>
 #include <opencv2/opencv.hpp>
+// #include <cv.h>
+#include <opencv2/highgui.hpp>
 
 #include "rotors_gazebo_plugins/common.h"
 
@@ -159,7 +159,7 @@ void GeotaggedImagesPlugin::OnNewFrame(const unsigned char * image)
   Mat frame = Mat(height_, width_, CV_8UC3);
   Mat frameBGR = Mat(height_, width_, CV_8UC3);
   frame.data = (uchar*)image; //frame has not the right color format yet -> convert
-  cvtColor(frame, frameBGR, CV_RGB2BGR);
+  cvtColor(frame, frameBGR, cv::COLOR_RGB2BGR);
 
   char file_name[256];
   snprintf(file_name, sizeof(file_name), "%s/DSC%05i.jpg", storageDir_.c_str(), imageCounter_);
