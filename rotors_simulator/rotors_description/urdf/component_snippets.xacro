@@ -43,7 +43,7 @@
     <link name="${namespace}/hokuyo_link">
       <inertial>
          <mass value="0.01" />
-         <inertia ixx="1e-6" ixy="0.0" ixz="0.0" iyy="1e-6" iyz="0.0" izz="1e-6" /> 
+         <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" /> 
       </inertial>
       <visual name="visual">
         <geometry>
@@ -59,7 +59,7 @@
     </joint>
 
     <gazebo reference="${namespace}/hokuyo_link">
-    <sensor type="gpu_ray" name="head_hokuyo_sensor">
+    <sensor type="ray" name="head_hokuyo_sensor">
       <pose>0 0 0 0 0 0</pose>
       <visualize>false</visualize>
       <update_rate>40</update_rate>
@@ -87,7 +87,7 @@
           <stddev>0.01</stddev>
         </noise>
       </ray>
-      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
         <topicName>/drone111/scan</topicName>
         <frameName>hokuyo_link</frameName>
       </plugin>

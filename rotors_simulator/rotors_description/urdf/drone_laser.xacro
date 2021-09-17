@@ -22,7 +22,7 @@
 <robot name="hummingbird" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find rotors_description)/urdf/component_snippets.xacro" />
   <!-- Instantiate hummingbird "mechanics" -->
-  <xacro:include filename="$(find rotors_description)/urdf/hummingbird.xacro" />
+  <xacro:include filename="$(find rotors_description)/urdf/drone.xacro" />
 
   <!-- Instantiate a controller. -->
   <xacro:controller_plugin_macro namespace="${namespace}" imu_sub_topic="imu" />
@@ -55,65 +55,29 @@
   </gazebo>
 
 
-
   <xacro:camera_macro
-   namespace="${namespace}"
-   parent_link="${namespace}/base_link"
-   camera_suffix="front"
-   frame_rate="30"
-   horizontal_fov="1.3463"
-   image_width="856"
-   image_height="480"
-   image_format="R8G8B8"
-   min_distance="0.02"
-   max_distance="50"
-   noise_mean="0.0"
-   noise_stddev="0.007"
-   enable_visual="true">
-   <box size="0.002 0.005 0.005" />
-   <origin xyz="0.25 0 -0.05" rpy="0 0 0" />
- </xacro:camera_macro>
+    namespace="${namespace}"
+    parent_link="${namespace}/base_link"
+    camera_suffix="bottom"
+    frame_rate="50"
+    horizontal_fov="2.3"
+    image_width="640"
+    image_height="480"
+    image_format="R8G8B8"
+    min_distance="0.02"
+    max_distance="50"
+    noise_mean="0.0"
+    noise_stddev="0.007"
+    enable_visual="true">
+    <box size="0.002 0.005 0.005" />
+    <origin xyz="0 0 -0.05" rpy="0 1.57 0" />
+  </xacro:camera_macro>
+
 
   <xacro:hokuyo_lidar
     namespace="${namespace}"
-    parent_link="${namespace}/base_link" >
+    parent_link="${namespace}/base_link" />
   </xacro:hokuyo_lidar>
 
-<!--Contact sensor 1 Laser 
-<joint name="contact_sensor_1_joint" type="fixed">
-    <axis xyz="0 1 0" />
-    <origin xyz="0 0 -0.1" rpy="0 0 0"/>
-    <parent link="${namespace}/base_link"/>
-    <child link="contact_sensor_1_link"/>
-  </joint>
-
-   
-  <link name="contact_sensor_1_link">
-    <collision name="contact_sensor_collision_1">
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-    	<box size="0.1 0.1 0.001"/>
-      </geometry>
-    </collision>
-
-    <visual name="contact_sensor_visual_1">
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-    	<box size="0.01 0.01 0.001"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <gazebo reference="contact_sensor_1_link">
-          <sensor name="contact_sensor_1" type="contact">
-		<plugin name="my_contact_plugin_1" filename="libgazebo_ros_bumper.so">
-			    <frameName>world</frameName>
-		</plugin>
-          <contact>
-            <collision>contact_sensor_collision_1_collision</collision>
-          </contact>
-      </sensor>
-  </gazebo>-->
 
 </robot>
-

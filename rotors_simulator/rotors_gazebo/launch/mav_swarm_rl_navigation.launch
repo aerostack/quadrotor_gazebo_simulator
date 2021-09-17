@@ -1,3 +1,5 @@
+<?xml version="1.0"?>
+
 <launch>
   <arg name="world_name" default="basic"/>
   <arg name="enable_logging" default="false"/>
@@ -16,11 +18,13 @@
       <arg name="model" value="$(find rotors_description)/urdf/mav_generic_odometry_sensor.gazebo" />
       <arg name="enable_logging" value="$(arg enable_logging)" />
       <arg name="enable_ground_truth" value="$(arg enable_ground_truth)" />
+      <arg name="tf_prefix" value="$(arg namespace)"/>
       <arg name="log_file" value="$(arg mav_name)$(arg drone_swarm_number)"/>
       <!-- <arg name="y" value="$(arg drone_swarm_number)"/> -->
       <arg name="x" value="$(arg x)"/>
       <arg name="y" value="$(arg y)"/>
     </include>
+    
     <!--
     <node name="roll_pitch_yawrate_thrust_controller_node" pkg="rotors_control" type="roll_pitch_yawrate_thrust_controller_node" output="screen">
       <rosparam
